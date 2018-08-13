@@ -9,9 +9,18 @@ namespace _01.ByteBank
 
         static void Main(string[] args)
         {
-            ContaBancaria conta = new ContaBancaria(100);
-            conta.SacarDinheiro(35);
-            conta.SacarDinheiro(150);
+            //ContaBancaria conta = new ContaBancaria(100);
+            //conta.SacarDinheiro(35);
+            //conta.SacarDinheiro(150);
+
+            ///Emprestimo emprestimo1 = new Emprestimo("A1234");
+            ///Emprestimo emprestimo2 = new Emprestimo("xyz");
+            ///emprestimo2.RedefinirCodigoContrato("BC2345");
+            ///emprestimo2.Prazo = 3;
+            ///emprestimo2.Prazo = 7;
+            ///emprestimo2.CalcularJuros(6000, 3);
+            ///emprestimo2.CalcularJuros(8500, 6);
+            ///emprestimo2.CalcularJuros(11500, 4);
         }
 
 
