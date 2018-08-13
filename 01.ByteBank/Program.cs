@@ -9,7 +9,7 @@ namespace _01.ByteBank
 
         static void Main(string[] args)
         {
-            ExibirMenu();
+            
         }
 
         private static void ExibirMenu()
