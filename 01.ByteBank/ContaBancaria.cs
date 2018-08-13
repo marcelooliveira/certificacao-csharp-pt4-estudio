@@ -14,10 +14,10 @@ namespace _01.ByteBank
 
         public void SacarDinheiro(decimal quantia)
         {
-            ///<image url="$(ProjectDir)\img1.png"/>
-            ///<image url="$(ProjectDir)\img2.png"/>
-            ///<image url="$(ProjectDir)\img3.png"/>
-            ///
+            ///<image url="$(ProjectDir)\img.png"/>
+            ///<image url="$(ProjectDir)\img.png"/>
+            ///<image url="$(ProjectDir)\img.png"/>
+
             if (TemSaldoSuficiente(quantia))
             {
                 Sacar(quantia);
