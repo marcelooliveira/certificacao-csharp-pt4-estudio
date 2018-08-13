@@ -40,7 +40,6 @@ namespace _01.ByteBank
             this.codigoContrato = codigoContrato;
         }
 
-
         public event PrazoMaximoEstouradoHandler OnPrazoMaximoEstourado;
 
         public int Prazo
@@ -65,25 +64,26 @@ namespace _01.ByteBank
             }
         }
 
-        public static decimal CalcularJuros(decimal valor, int prazo)
+        public decimal CalcularJuros(decimal valor, int prazo)
         {
             decimal valorJuros;
             decimal taxaJuros;
-            if (prazo > 0 && prazo < 5 && valor < 7000m) //falso
+            if (prazo > 0 && prazo < 5 && valor < 7000m)
             {
                 taxaJuros = 0.035m;
             }
-            else if (prazo > 5 && valor > 7000m) //falso
+            else if (prazo > 5 && valor > 7000m)
             {
                 taxaJuros = 0.075m;
             }
             else
             {
-                //taxaJuros = 0.045m;
                 taxaJuros = 0.0875m;
             }
             valorJuros = valor * taxaJuros * prazo;
             return valorJuros;
         }
     }
+
+    public delegate void PrazoMaximoEstouradoHandler(object source, EventArgs e);
 }
