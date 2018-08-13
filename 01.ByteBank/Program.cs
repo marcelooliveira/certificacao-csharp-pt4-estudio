@@ -13,14 +13,12 @@ namespace _01.ByteBank
             //conta.SacarDinheiro(35);
             //conta.SacarDinheiro(150);
 
-            ///Emprestimo emprestimo1 = new Emprestimo("A1234");
-            ///Emprestimo emprestimo2 = new Emprestimo("xyz");
-            ///emprestimo2.RedefinirCodigoContrato("BC2345");
-            ///emprestimo2.Prazo = 3;
-            ///emprestimo2.Prazo = 7;
-            ///emprestimo2.CalcularJuros(6000, 3);
-            ///emprestimo2.CalcularJuros(8500, 6);
-            ///emprestimo2.CalcularJuros(11500, 4);
+            ///Emprestimo emprestimo = new Emprestimo("A1234");
+            ///emprestimo.Prazo = 3;
+            ///emprestimo.Prazo = 7;
+            ///emprestimo.CalcularJuros(6000, 3);
+            ///emprestimo.CalcularJuros(8500, 6);
+            ///emprestimo.CalcularJuros(11500, 4);
         }
 
 
