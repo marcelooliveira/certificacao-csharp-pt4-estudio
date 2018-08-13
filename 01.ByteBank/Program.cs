@@ -45,11 +45,21 @@ namespace _01.ByteBank
                 int.TryParse(input, out opcao);
                 if (opcao > 0)
                 {
+                    Console.Clear();
                     itensMenu[opcao - 1]();
+                    Console.Write("Tecle algo para continuar... ");
+                    Console.ReadKey();
                 }
             }
             while (opcao != 0);
 
+        }
+
+        private static void TesteContaBancaria()
+        {
+            ContaBancaria conta = new ContaBancaria(100);
+            conta.SacarDinheiro(3.5m);
+            conta.SacarDinheiro(350);
         }
 
         private static void TesteEmprestimo()
@@ -62,13 +72,6 @@ namespace _01.ByteBank
             emprestimo2.CalcularJuros(6000, 3);
             emprestimo2.CalcularJuros(8500, 6);
             emprestimo2.CalcularJuros(11500, 4);
-        }
-
-        private static void TesteContaBancaria()
-        {
-            ContaBancaria conta = new ContaBancaria(100);
-            conta.SacarDinheiro(3.5m);
-            conta.SacarDinheiro(350);
         }
 
         private static void IfSemElse()
