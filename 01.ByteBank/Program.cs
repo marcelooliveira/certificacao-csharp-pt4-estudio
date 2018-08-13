@@ -16,6 +16,8 @@ namespace _01.ByteBank
         {
             var itensMenu = new ItemMenu[]
             {
+                TesteContaBancaria,
+                TesteEmprestimo,
                 IfSemElse,
                 IfElse,
                 IfAninhado,
@@ -25,8 +27,6 @@ namespace _01.ByteBank
                 IfAndOr,
                 OperadoresRelacionais,
                 OperadoresTesteTipo,
-                TesteContaBancaria,
-                TesteEmprestimo,
             };
 
             int opcao = 0;
