@@ -13,6 +13,7 @@ namespace _01.ByteBank
             //conta.SacarDinheiro(35);
             //conta.SacarDinheiro(150);
 
+            Emprestimo emprestimo = new Emprestimo("A1234");
             ///Emprestimo emprestimo = new Emprestimo("A1234");
             ///emprestimo.Prazo = 3;
             ///emprestimo.Prazo = 7;
