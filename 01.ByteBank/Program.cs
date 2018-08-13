@@ -9,10 +9,10 @@ namespace _01.ByteBank
 
         static void Main(string[] args)
         {
-            MontarMenu();
+            ExibirMenu();
         }
 
-        private static void MontarMenu()
+        private static void ExibirMenu()
         {
             var itensMenu = new ItemMenu[]
             {
@@ -32,6 +32,7 @@ namespace _01.ByteBank
             int opcao = 0;
             do
             {
+                Console.Clear();
                 for (int i = 0; i < itensMenu.Length; i++)
                 {
                     string name = itensMenu[i].Method.Name;
