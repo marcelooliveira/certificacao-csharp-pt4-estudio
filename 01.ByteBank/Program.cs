@@ -12,6 +12,27 @@ namespace _01.ByteBank
             
         }
 
+        private static void TestesContaBancaria()
+        {
+            ContaBancaria conta = new ContaBancaria(100);
+
+            ///conta.SacarDinheiro(15m);
+            ///conta.SacarDinheiro(350);
+        }
+
+        private static void TestesEmprestimo()
+        {
+            Emprestimo emprestimo1 = new Emprestimo("A1234");
+            ///Emprestimo emprestimo2 = new Emprestimo("xyz");
+            ///emprestimo2.RedefinirCodigoContrato("BC2345");
+            ///emprestimo2.Prazo = 3;
+            ///emprestimo2.Prazo = 7;
+            ///emprestimo2.CalcularJuros(6000, 3);
+            ///emprestimo2.CalcularJuros(8500, 6);
+            ///emprestimo2.CalcularJuros(11500, 4);
+        }
+
+
         private static void ExibirMenu()
         {
             var itensMenu = new ItemMenu[]
@@ -46,26 +67,5 @@ namespace _01.ByteBank
             while (opcao != 0);
 
         }
-
-        private static void TestesContaBancaria()
-        {
-            ContaBancaria conta = new ContaBancaria(100);
-
-            ///conta.SacarDinheiro(15m);
-            ///conta.SacarDinheiro(350);
-        }
-
-        private static void TestesEmprestimo()
-        {
-            Emprestimo emprestimo1 = new Emprestimo("A1234");
-            ///Emprestimo emprestimo2 = new Emprestimo("xyz");
-            ///emprestimo2.RedefinirCodigoContrato("BC2345");
-            ///emprestimo2.Prazo = 3;
-            ///emprestimo2.Prazo = 7;
-            ///emprestimo2.CalcularJuros(6000, 3);
-            ///emprestimo2.CalcularJuros(8500, 6);
-            ///emprestimo2.CalcularJuros(11500, 4);
-        }
-
     }
 }
