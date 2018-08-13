@@ -59,8 +59,8 @@ namespace _01.ByteBank
         private static void TesteContaBancaria()
         {
             ContaBancaria conta = new ContaBancaria(100);
-            conta.SacarDinheiro(3.5m);
-            conta.SacarDinheiro(350);
+            conta.SacarDinheiro(15m);
+            ///conta.SacarDinheiro(350);
         }
 
         private static void TesteEmprestimo()
