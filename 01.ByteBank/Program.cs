@@ -12,6 +12,8 @@ namespace _01.ByteBank
             
         }
 
+
+
         private static void TestesContaBancaria()
         {
             ContaBancaria conta = new ContaBancaria(100);
@@ -31,7 +33,6 @@ namespace _01.ByteBank
             ///emprestimo2.CalcularJuros(8500, 6);
             ///emprestimo2.CalcularJuros(11500, 4);
         }
-
 
         private static void ExibirMenu()
         {
