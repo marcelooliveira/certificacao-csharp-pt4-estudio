@@ -12,11 +12,7 @@ namespace _01.ByteBank
 
         public void RedefinirCodigoContrato(string codigoContrato)
         {
-            if (!ValidarCodigo(codigoContrato))
-            {
-                Console.WriteLine("código de contrato inválido");
-                return;
-            }
+            //só deve aceitar o código se ele for válido
             this.codigoContrato = codigoContrato;
         }
 
@@ -25,7 +21,9 @@ namespace _01.ByteBank
             bool codigoContratoValido = true;
             foreach (var caractere in codigoContrato)
             {
-                if (!(Char.IsDigit(caractere) || Char.IsUpper(caractere)))
+                //só é válido se for numérico ou maiúscula
+                bool valido = false;
+                if (!(valido))
                 {
                     codigoContratoValido = false;
                     break;
@@ -38,6 +36,7 @@ namespace _01.ByteBank
         public Emprestimo(string codigoContrato)
         {
             this.codigoContrato = codigoContrato;
+            Console.WriteLine($"Novo empréstimo com código: {codigoContrato}");
         }
 
         public event PrazoMaximoEstouradoHandler OnPrazoMaximoEstourado;
@@ -50,37 +49,28 @@ namespace _01.ByteBank
             }
             set
             {
-                if (value > PRAZO_MAXIMO_PAGAMENTO_ANOS)
-                {
-                    if (OnPrazoMaximoEstourado == null)
-                    {
-                        Console.WriteLine("OnPrazoMaximoEstourado não informado!");
-                        return;
-                    }
-                    OnPrazoMaximoEstourado(this, new EventArgs());
-                    return;
-                }
+                //se o novo prazo for maior que o prazo máximo,
+                //lançar um evento de "prazo estourado"
+                //senão, definir o novo prazo.
+
                 prazo = value;
+                Console.WriteLine($"novo prazo: {prazo}");
             }
         }
 
         public decimal CalcularJuros(decimal valor, int prazo)
         {
             decimal valorJuros;
-            decimal taxaJuros;
-            if (prazo > 0 && prazo < 5 && valor < 7000m)
-            {
-                taxaJuros = 0.035m;
-            }
-            else if (prazo > 5 && valor > 7000m)
-            {
-                taxaJuros = 0.075m;
-            }
-            else
-            {
-                taxaJuros = 0.0875m;
-            }
+            decimal taxaJuros = 0;
+
+            //1) se o prazo é maior que zero E menor que 5 E
+            //o valor é menor que 7 mil, a taxa de juros é 3,5%
+            //   1.1) senão, se o prazo for maior que 5 
+            //        E o valor for maior que 7 mil, a taxa é 7,5%
+            //   1.2) senão, a taxa de juros é 8,75%
+
             valorJuros = valor * taxaJuros * prazo;
+            Console.WriteLine($"valorJuros: {valorJuros}");
             return valorJuros;
         }
     }

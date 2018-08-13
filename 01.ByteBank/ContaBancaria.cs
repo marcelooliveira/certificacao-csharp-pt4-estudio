@@ -14,9 +14,9 @@ namespace _01.ByteBank
 
         public void SacarDinheiro(decimal quantia)
         {
-            ///< image url="$(ProjectDir)\img1.png"/>
             Sacar(quantia);
             ImprimirComprovante();
+            ///< image url="$(ProjectDir)\img1.png"/>
         }
 
         private bool TemSaldoSuficiente(decimal quantia)

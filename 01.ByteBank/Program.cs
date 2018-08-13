@@ -16,17 +16,8 @@ namespace _01.ByteBank
         {
             var itensMenu = new ItemMenu[]
             {
-                TesteContaBancaria,
-                TesteEmprestimo,
-                IfSemElse,
-                IfElse,
-                IfAninhado,
-                IfTesteCaracteres,
-                IfTesteConsoleRead,
-                IfNot,
-                IfAndOr,
-                OperadoresRelacionais,
-                OperadoresTesteTipo,
+                TestesContaBancaria,
+                TestesEmprestimo
             };
 
             int opcao = 0;
@@ -56,23 +47,24 @@ namespace _01.ByteBank
 
         }
 
-        private static void TesteContaBancaria()
+        private static void TestesContaBancaria()
         {
             ContaBancaria conta = new ContaBancaria(100);
-            conta.SacarDinheiro(15m);
+
+            ///conta.SacarDinheiro(15m);
             ///conta.SacarDinheiro(350);
         }
 
-        private static void TesteEmprestimo()
+        private static void TestesEmprestimo()
         {
             Emprestimo emprestimo1 = new Emprestimo("A1234");
-            Emprestimo emprestimo2 = new Emprestimo("xyz");
-            emprestimo2.RedefinirCodigoContrato("BC2345");
-            emprestimo2.Prazo = 3;
-            emprestimo2.Prazo = 7;
-            emprestimo2.CalcularJuros(6000, 3);
-            emprestimo2.CalcularJuros(8500, 6);
-            emprestimo2.CalcularJuros(11500, 4);
+            ///Emprestimo emprestimo2 = new Emprestimo("xyz");
+            ///emprestimo2.RedefinirCodigoContrato("BC2345");
+            ///emprestimo2.Prazo = 3;
+            ///emprestimo2.Prazo = 7;
+            ///emprestimo2.CalcularJuros(6000, 3);
+            ///emprestimo2.CalcularJuros(8500, 6);
+            ///emprestimo2.CalcularJuros(11500, 4);
         }
 
         private static void IfSemElse()
@@ -285,3 +277,15 @@ namespace _01.ByteBank
         }
     }
 }
+
+//943-redeswifi-video1.1-Introdu‡Æo.trec
+//943-redeswifi-video1.2-conhecendo a rede.trec
+//943-redeswifi-video1.3-entendendo os padroes de wifi.trec
+//943-redeswifi-video2.1-colocando um novo departamento.trec
+//943-redeswifi-video2.2-alterando o canal do wifi.trec
+//943-redeswifi-video2.3-o que atrapalha o sinal do wifi.trec
+//943-redeswifi-video3.1-conhecendo o wep.trec
+//943-redeswifi-video3.2-conhecendo o wpa e wpa2.trec
+//943-redeswifi-video3.3-conhecendo os problemas de seguran‡a de uma rede sem fio.trec
+//943-redeswifi-video4.1-conhecendo o roteador sem fio.trec
+//943-redeswifi-video4.2-ConclusÆo.trec
