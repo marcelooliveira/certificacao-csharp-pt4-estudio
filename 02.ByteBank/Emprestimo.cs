@@ -118,6 +118,13 @@ namespace _02.ByteBank
         //[Conditional("DEBUG")]
         public void Finalizar()
         {
+            //REGRAS:
+            //=======
+            //No modo TRIAL, somente o método AvaliarEmprestimo() deve ser chamado.
+            //No modo BASIC, os três métodos devem ser chamados.
+            //NO modo ADVANCED, somente os métodos AvaliarEmprestimo() e
+            //      ProcessarEmprestimo() devem ser chamados.
+
 #if TRIAL
                 AvaliarEmprestimo();
 #elif BASIC
