@@ -2,9 +2,9 @@
 
 namespace _01.ByteBank
 {
-    class TestesComIf
+    class ExemplosComIf
     {
-        private static void IfSemElse()
+        public static void IfSemElse()
         {
             // instrução if sem um else  
             bool condicao = true;
@@ -16,7 +16,7 @@ namespace _01.ByteBank
             // Próxima instrução do programa. 
         }
 
-        private static void IfElse()
+        public static void IfElse()
         {
             bool condicao = true;
 
@@ -32,7 +32,7 @@ namespace _01.ByteBank
             }
         }
 
-        private static void IfAninhado()
+        public static void IfAninhado()
         {
             int m = 12;
             int n = 18;
@@ -58,7 +58,7 @@ namespace _01.ByteBank
             }
         }
 
-        private static void IfTesteCaracteres()
+        public static void IfTesteCaracteres()
         {
             Console.Write("Digite um caractere: ");
             char c = (char)Console.Read();
@@ -79,7 +79,7 @@ namespace _01.ByteBank
             }
         }
 
-        private static void IfTesteConsoleRead()
+        public static void IfTesteConsoleRead()
         {
             Console.Write("Digite um caractere: ");
             char ch = (char)Console.Read();
@@ -102,7 +102,7 @@ namespace _01.ByteBank
             }
         }
 
-        private static void IfNot()
+        public static void IfNot()
         {
             bool resultado = true;
             if (!resultado)
@@ -117,7 +117,7 @@ namespace _01.ByteBank
             }
         }
 
-        private static void IfAndOr()
+        public static void IfAndOr()
         {
             int m0 = 9;
             int n0 = 7;
@@ -155,7 +155,7 @@ namespace _01.ByteBank
             }
         }
 
-        private static void OperadoresRelacionais()
+        public static void OperadoresRelacionais()
         {
             dynamic x = 10;
             dynamic y = 23;
@@ -174,7 +174,7 @@ namespace _01.ByteBank
                 Console.WriteLine("maior que ou igual a");
         }
 
-        private static void OperadoresTesteTipo()
+        public static void OperadoresTesteTipo()
         {
             dynamic x = 10m;
 
@@ -186,12 +186,12 @@ namespace _01.ByteBank
                 Console.WriteLine("x é decimal");
         }
 
-        private static void FacaAlgo()
+        public static void FacaAlgo()
         {
             Console.WriteLine("Fazendo algo...");
         }
 
-        private static void IfThenElseIfElse()
+        public static void IfThenElseIfElse()
         {
             bool valor = true;
 
