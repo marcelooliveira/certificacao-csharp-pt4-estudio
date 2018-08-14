@@ -6,6 +6,10 @@
     <RootNamespace>_02.ByteBank</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP2_0;ADVANCED;NETCOREAPP2_0;NETCOREAPP2_0</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="img1.png" />
     <None Remove="img2.png" />
