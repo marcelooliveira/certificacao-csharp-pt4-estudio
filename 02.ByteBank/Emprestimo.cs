@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace _02.ByteBank
 {
@@ -7,7 +8,8 @@ namespace _02.ByteBank
         private int prazo;
         private const int PRAZO_MAXIMO_PAGAMENTO_ANOS = 5;
         private const decimal JUROS = 0.034m;
-
+        private const string ARQUIVO_LOG_TESTE = @"monitoramento/logs.txt";
+        private const string ARQUIVO_LOG_PRODUCAO = @"\\\\10.1.2.179\\monitoramento\\logs.txt";
         private string codigoContrato;
 
         private bool ValidarCodigo(string codigoContrato)
@@ -91,7 +93,54 @@ namespace _02.ByteBank
             }
             valorJuros = valor * taxaJuros * prazo;
             Console.WriteLine($"valorJuros: {valorJuros}");
+
+            GravarLog($"Valor de juros calculado: {valorJuros}");
+
             return valorJuros;
+        }
+
+        public void GravarLog(string mensagem)
+        {
+#if DEBUG
+            var arquivo = ARQUIVO_LOG_TESTE;
+#else
+            var arquivo = ARQUIVO_LOG_PRODUCAO;
+#endif
+
+            Directory.CreateDirectory(Path.GetDirectoryName(arquivo));
+            using (var writer = new StreamWriter(arquivo, append: true))
+            {
+                writer.WriteLine(mensagem);
+            }
+        }
+
+        public void Finalizar()
+        {
+#if TRIAL
+                AvaliarEmprestimo();
+#elif BASIC
+                AvaliarEmprestimo();
+                ProcessarEmprestimo();
+                FinanciarEmprestimo();
+#else
+            AvaliarEmprestimo();
+            ProcessarEmprestimo();
+#endif
+        }
+
+        private void FinanciarEmprestimo()
+        {
+            Console.WriteLine("FinanciarEmprestimo");
+        }
+
+        private void ProcessarEmprestimo()
+        {
+            Console.WriteLine("ProcessarEmprestimo");
+        }
+
+        private void AvaliarEmprestimo()
+        {
+            Console.WriteLine("AvaliarEmprestimo");
         }
     }
 
