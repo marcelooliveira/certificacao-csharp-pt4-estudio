@@ -14,49 +14,16 @@ namespace _03.ByteBank
 
         private static int GetFatorial(int numero)
         {
-            //int contador = 1;
-            //int fatorial = 1;
-            //while (contador <= numero)
-            //{
-            //    fatorial *= contador;
-            //    contador++;
-            //}
-
-
-            //int fatorial = 1 * 2 * 3 * 4 * 5;
-            //System.Console.WriteLine($"fatorial: {fatorial}");
-
-
-
-            //int fatorial = 1;
-            //fatorial = fatorial * 1;
-            //fatorial = fatorial * 2;
-            //fatorial = fatorial * 3;
-            //fatorial = fatorial * 4;
-            //fatorial = fatorial * 5;
-
-
-            //int fatorial = 1;
-            //int contador = 1;
-            //fatorial = fatorial * contador;
-            //contador++;
-            //fatorial = fatorial * contador;
-            //contador++;
-            //fatorial = fatorial * contador;
-            //contador++;
-            //fatorial = fatorial * contador;
-            //contador++;
-            //fatorial = fatorial * contador;
-            //contador++;
+            //FATORIAL DE 5 = 5 x 4 x 3 x 2 x 1  = 120
+            //FATORIAL DE 4 = 4 x 3 x 2 x 1      = 24
+            //FATORIAL DE 3 = 3 x 2 x 1          = 6
+            //FATORIAL DE 2 = 2 x 1              = 2 
+            //FATORIAL DE 1                      = 1
+            //FATORIAL DE 0                      = 1 
 
             int fatorial = 1;
-            int contador = 1;
-            while (contador <= numero)
-            {
-                fatorial = fatorial * contador;
-                contador++;
-            }
-            //System.Console.WriteLine($"fatorial: {fatorial}");
+            
+            System.Console.WriteLine($"fatorial de {numero} é {fatorial}");
 
             return fatorial;
         }

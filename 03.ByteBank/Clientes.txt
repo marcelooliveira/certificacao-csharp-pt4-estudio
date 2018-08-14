@@ -1,4 +1,3 @@
-id,nome,sobrenome,email,valor,status
 1,Carmella,Dobell,cdobell0@joomla.org,16652.61,ativo
 2,Rosabelle,Molyneaux,rmolyneaux1@cafepress.com,4705.55,inativo
 3,Sissy,Dimic,sdimic2@livejournal.com,5850.91,inativo
