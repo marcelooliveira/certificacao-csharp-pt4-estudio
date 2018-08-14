@@ -5,8 +5,6 @@ namespace _03.ByteBank
 {
     class Program
     {
-        delegate void ItemMenu();
-
         static void Main(string[] args)
         {
 
