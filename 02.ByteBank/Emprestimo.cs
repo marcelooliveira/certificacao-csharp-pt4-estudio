@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 
 namespace _02.ByteBank
@@ -114,6 +115,7 @@ namespace _02.ByteBank
             }
         }
 
+        //[Conditional("DEBUG")]
         public void Finalizar()
         {
 #if TRIAL
