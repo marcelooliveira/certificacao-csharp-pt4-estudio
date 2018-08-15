@@ -21,7 +21,13 @@ namespace _03.ByteBank
                 Outros
             };
 
-            GerarMenu(itensMenu);
+            int opcao;
+
+            do
+            {
+                opcao = GerarMenu(itensMenu);
+            } while (opcao != 0);
+         
         }
 
         private static int GerarMenu(ItemMenu[] itensMenu)
