@@ -6,19 +6,19 @@ using System.Text.RegularExpressions;
 
 namespace _03.ByteBank
 {
-    class Menu
+    class MenuCaixaEletronico
     {
         delegate void ItemMenu();
         public void Executar()
         {
             var itensMenu = new ItemMenu[]
             {
-                IfElse,
-                CompilacaoCondicional,
-                WhileDo,
-                ForEForeach,
-                SwitchCaseDefault,
-                TryCatch
+                Saque,
+                ExtratoESaldo,
+                Depositos,
+                Transferencias,
+                Emprestimo,
+                Outros
             };
 
             int opcao = -1;
@@ -51,6 +51,12 @@ namespace _03.ByteBank
 
         private static void ImprimirMenu(ItemMenu[] itensMenu)
         {
+            Console.WriteLine(
+@"
+█▀▀▄ █░░█ ▀▀█▀▀ █▀▀ █▀▀▄ █▀▀█ █▀▀▄ █░█
+█▀▀▄ █▄▄█ ░░█░░ █▀▀ █▀▀▄ █▄▄█ █░░█ █▀▄
+▀▀▀░ ▄▄▄█ ░░▀░░ ▀▀▀ ▀▀▀░ ▀░░▀ ▀░░▀ ▀░▀");
+
             for (int i = 0; i < itensMenu.Length; i++)
             {
                 string name = itensMenu[i].Method.Name;
@@ -61,32 +67,32 @@ namespace _03.ByteBank
             Console.WriteLine();
         }
 
-        private void TryCatch()
+        private void Outros()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
         }
 
-        private void SwitchCaseDefault()
+        private void Emprestimo()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
         }
 
-        private void ForEForeach()
+        private void Transferencias()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
         }
 
-        private void WhileDo()
+        private void Depositos()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
         }
 
-        private void IfElse()
+        private void Saque()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
         }
 
-        private void CompilacaoCondicional()
+        private void ExtratoESaldo()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
         }

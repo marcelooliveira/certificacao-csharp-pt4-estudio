@@ -7,7 +7,6 @@ namespace _03.ByteBank
     {
         static void Main(string[] args)
         {
-
         }
 
         private static int GetFatorial(int numero)
