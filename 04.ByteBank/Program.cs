@@ -30,13 +30,20 @@ namespace _04.ByteBank
             //FATORIAL DE 0                      = 1 
 
             int fatorial = 1;
-            int fator = numero;
+            //int fator = numero; //inicializacao
 
-            while (fator >= 1)
+            //while (fator >= 1) //condicao
+            //{
+            //    fatorial = fatorial * fator;
+            //    fator = fator - 1; //decremento
+            //}
+
+            for (int fator = numero; fator >= 1; fator--)
             {
-                fatorial = fatorial * fator;
-                fator = fator - 1;
+                fatorial *= fator;
             }
+
+
             System.Console.WriteLine($"fatorial de {numero} é {fatorial}");
 
             return fatorial;
