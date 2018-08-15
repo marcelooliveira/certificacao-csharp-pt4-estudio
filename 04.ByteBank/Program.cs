@@ -62,7 +62,7 @@ namespace _04.ByteBank
                 {
                     if (conta.Saldo > 50000)
                     {
-                        return true;
+                        return true; //retorno antecipado ou early return
                     }
                 }
             }
