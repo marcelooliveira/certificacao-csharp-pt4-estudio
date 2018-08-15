@@ -22,6 +22,8 @@ namespace _04.ByteBank
             //menu.Executar();
 
             IList<Conta> contasEspeciais = GetContasEspeciais();
+
+            bool existe = ExisteContaComMaisDe50000();
         }
 
         private static IList<Conta> GetContasEspeciais()
@@ -50,12 +52,22 @@ namespace _04.ByteBank
         private static bool ExisteContaComMaisDe50000()
         {
             IList<Cliente> clientes = GetClientes();
-            bool resultado = false;
 
             //TAREFA: RETORNAR VERDADEIRO OU FALSO
             //INDICANDO SE EXISTE CONTA COM MAIS DE 50 MIL DE SALDO
 
-            return resultado;
+            foreach (var cliente in clientes)
+            {
+                foreach (var conta in cliente.Contas)
+                {
+                    if (conta.Saldo > 50000)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         private static IList<Cliente> GetClientes()
