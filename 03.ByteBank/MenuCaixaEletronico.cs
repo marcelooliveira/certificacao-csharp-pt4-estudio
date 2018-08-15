@@ -14,18 +14,14 @@ namespace _03.ByteBank
             var itensMenu = new ItemMenu[]
             {
                 Saque,
-                ExtratoESaldo,
+                ExtratoOuSaldo,
                 Depositos,
                 Transferencias,
                 Emprestimo,
                 Outros
             };
 
-            int opcao = -1;
-            while (opcao != 0)
-            {
-                opcao = GerarMenu(itensMenu);
-            }
+            GerarMenu(itensMenu);
         }
 
         private static int GerarMenu(ItemMenu[] itensMenu)
@@ -51,12 +47,13 @@ namespace _03.ByteBank
 
         private static void ImprimirMenu(ItemMenu[] itensMenu)
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine(
 @"
 █▀▀▄ █░░█ ▀▀█▀▀ █▀▀ █▀▀▄ █▀▀█ █▀▀▄ █░█
 █▀▀▄ █▄▄█ ░░█░░ █▀▀ █▀▀▄ █▄▄█ █░░█ █▀▄
 ▀▀▀░ ▄▄▄█ ░░▀░░ ▀▀▀ ▀▀▀░ ▀░░▀ ▀░░▀ ▀░▀");
-
+            Console.ForegroundColor = ConsoleColor.White;
             for (int i = 0; i < itensMenu.Length; i++)
             {
                 string name = itensMenu[i].Method.Name;
@@ -92,7 +89,7 @@ namespace _03.ByteBank
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
         }
 
-        private void ExtratoESaldo()
+        private void ExtratoOuSaldo()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
         }
