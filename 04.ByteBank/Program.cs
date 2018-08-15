@@ -21,7 +21,6 @@ namespace _04.ByteBank
             //MenuCaixaEletronico menu = new MenuCaixaEletronico();
             //menu.Executar();
 
-            var contasEspeciais = GetContasEspeciais();
         }
 
         private static IList<Conta> GetContasEspeciais()
