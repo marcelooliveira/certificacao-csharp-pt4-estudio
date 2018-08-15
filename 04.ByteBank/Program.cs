@@ -47,6 +47,17 @@ namespace _04.ByteBank
             return contasEspeciais;
         }
 
+        private static bool ExisteContaComMaisDe50000()
+        {
+            IList<Cliente> clientes = GetClientes();
+            bool resultado = false;
+
+            //TAREFA: RETORNAR VERDADEIRO OU FALSO
+            //INDICANDO SE EXISTE CONTA COM MAIS DE 50 MIL DE SALDO
+
+            return resultado;
+        }
+
         private static IList<Cliente> GetClientes()
         {
             IList<Cliente> clientes = new List<Cliente>();
