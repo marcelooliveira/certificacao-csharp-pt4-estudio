@@ -10,29 +10,12 @@ namespace _06.ByteBank
     {
         static void Main(string[] args)
         {
-            ITransferenciaBancaria transferencia = new TransferenciaBancaria_BD();
+            ITransferenciaBancaria transferencia = new TransferenciaBancaria();
 
-            try
-            {
-                ContaCorrente conta1 = new ContaCorrente(1, 100);
-                ContaCorrente conta2 = new ContaCorrente(4, 50);
-                Console.WriteLine(conta1);
-                Console.WriteLine(conta2);
-
-                //ContaCorrente conta3 = new ContaCorrente(-23, 50);
-                transferencia.Efetuar(conta1, conta2, 3.5m);
-                transferencia.Efetuar(conta1, conta2, 3500000000000m);
-                //transferencia.Efetuar(conta3, conta1, 2.5m);
-                transferencia.Efetuar(conta2, conta1, 3.5m);
-                Console.WriteLine(conta1);
-                Console.WriteLine(conta2);
-
-                Console.WriteLine("Transferências realizadas com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-            }
+            ContaCorrente conta1 = new ContaCorrente(1, 100);
+            ContaCorrente conta2 = new ContaCorrente(4, 50);
+            Console.WriteLine(conta1);
+            Console.WriteLine(conta2);
 
             Console.ReadKey();
         }
@@ -72,7 +55,7 @@ namespace _06.ByteBank
 
         public override string ToString()
         {
-            return $"Conta: {Id}, Saldo: {Saldo:C}";
+            return $"Conta Nº: {Id}, Saldo: {Saldo:C}";
         }
     }
 
@@ -88,24 +71,10 @@ namespace _06.ByteBank
             , decimal valor)
         {
             Logger.LogInfo("Entrando do método Efetuar.");
-            try
-            {
-                if (contaCredito == null)
-                    throw new ArgumentNullException(nameof(contaCredito));
-                if (contaDebito == null)
-                    throw new ArgumentNullException(nameof(contaDebito));
-                if (valor <= 0)
-                    throw new ArgumentOutOfRangeException(nameof(valor));
 
-                contaDebito.Debitar(valor);
-                contaCredito.Creditar(valor);
-                Logger.LogInfo("Transferência realizada com sucesso.");
-            }
-            catch (Exception exc)
-            {
-                Logger.LogErro(exc.ToString());
-                throw;
-            }
+            contaDebito.Debitar(valor);
+            contaCredito.Creditar(valor);
+            Logger.LogInfo("Transferência realizada com sucesso.");
             Logger.LogInfo("Saindo do método Efetuar.");
         }
     }
@@ -132,30 +101,11 @@ namespace _06.ByteBank
             SqlCommand comandoTaxa = GetTaxaTransferenciaCommand
                 (contaCredito.Id, TAXA_TRANSFERENCIA);
 
-            try
-            {
-                comandoTaxa.ExecuteNonQuery();
-                comandoTransferencia.ExecuteNonQuery();
-                transaction.Commit();
-                Logger.LogInfo("Transferência realizada com sucesso.");
-            }
-            catch (SqlException ex)
-            {
-                transaction.Rollback();
-                Logger.LogErro(ex.ToString());
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Logger.LogErro(ex.ToString());
-                throw;
-            }
-            finally
-            {
-                comandoTransferencia.Dispose();
-                transaction.Dispose();
-                connection.Dispose();
-            }
+            comandoTaxa.ExecuteNonQuery();
+            comandoTransferencia.ExecuteNonQuery();
+            transaction.Commit();
+            Logger.LogInfo("Transferência realizada com sucesso.");
+
             Logger.LogInfo("Saindo do método Efetuar.");
         }
 
