@@ -21,8 +21,7 @@ namespace _01.ByteBank
             emprestimo.CalcularJuros(8500, 6);
             emprestimo.CalcularJuros(11500, 4);
 
-            CaixaEletronico caixa = new CaixaEletronico();
-            caixa.Sacar(75);
+
 
             Console.ReadKey();
         }
