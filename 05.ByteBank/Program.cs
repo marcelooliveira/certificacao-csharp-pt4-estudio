@@ -160,6 +160,7 @@ namespace _05.ByteBank
 
         private static void Log(string mensagem, string tipo)
         {
+            Console.WriteLine(mensagem);
             using (var sw = new StreamWriter("logs.txt", append: true))
             {
                 sw.WriteLine(DateTime.Now.ToLocalTime() + ": " + tipo + " - " + mensagem);
