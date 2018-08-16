@@ -1,150 +1,215 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text.RegularExpressions;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.IO;
 
-namespace _04.ByteBank
+namespace _05.ByteBank
 {
     class Program
     {
         static void Main(string[] args)
         {
-            GetFatorial(5);
-            GetFatorial(4);
-            GetFatorial(3);
-            GetFatorial(2);
-            GetFatorial(1);
-            GetFatorial(0);
+            ITransferenciaBancaria transferencia = new TransferenciaBancaria();
 
-            //RelatorioClientes.ImprimirListagemClientes();
-
-            //MenuCaixaEletronico menu = new MenuCaixaEletronico();
-            //menu.Executar();
-
-            IList<Conta> contasEspeciais = GetContasEspeciais();
-
-            bool existe = ExisteContaComMaisDe50000();
-        }
-
-        private static IList<Conta> GetContasEspeciais()
-        {
-            IList<Cliente> clientes = GetClientes();
-            IList<Conta> contasEspeciais = new Collection<Conta>();
-
-            //TAREFA: RETORNAR UMA LISTA COM 
-            //TODAS AS CONTAS COM MAIS DE 5 MIL DE SALDO
-
-            foreach (Cliente cliente in clientes)
+            try
             {
-                foreach (Conta conta in cliente.Contas)
-                {
-                    if (conta.Saldo > 5000)
-                    {
-                        contasEspeciais.Add(conta);
-                    }
-                }
+                ContaCorrente conta1 = new ContaCorrente(1, 100);
+                ContaCorrente conta2 = new ContaCorrente(4, 50);
+                Console.WriteLine(conta1);
+                Console.WriteLine(conta2);
+
+                //ContaCorrente conta3 = new ContaCorrente(-23, 50);
+                transferencia.Efetuar(conta1, conta2, 3.5m);
+                transferencia.Efetuar(conta1, conta2, 3500000000000m);
+                //transferencia.Efetuar(conta3, conta1, 2.5m);
+                transferencia.Efetuar(conta2, conta1, 3.5m);
+                Console.WriteLine(conta1);
+                Console.WriteLine(conta2);
+
+                Console.WriteLine("Transferências realizadas com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
 
-
-            return contasEspeciais;
-        }
-
-        private static bool ExisteContaComMaisDe50000()
-        {
-            IList<Cliente> clientes = GetClientes();
-
-            //TAREFA: RETORNAR VERDADEIRO OU FALSO
-            //INDICANDO SE EXISTE CONTA COM MAIS DE 50 MIL DE SALDO
-
-            foreach (var cliente in clientes)
-            {
-                foreach (var conta in cliente.Contas)
-                {
-                    if (conta.Saldo > 50000)
-                    {
-                        return true; //retorno antecipado ou early return
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        private static IList<Cliente> GetClientes()
-        {
-            IList<Cliente> clientes = new List<Cliente>();
-            IList<Conta> contas1 = new List<Conta>
-            {
-                new Conta(1000m, 2, 0.025m),
-                new Conta(30000m, 4, 0.045m),
-                new Conta(50000m, 6, 0.045m)
-            };
-
-            clientes.Add(new Cliente("José", "da Silva", contas1));
-
-            IList<Conta> contas2 = new List<Conta>
-            {
-                new Conta(400m, 2, 0.025m),
-                new Conta(3000m, 4, 0.045m),
-                new Conta(75000m, 6, 0.045m)
-            };
-            clientes.Add(new Cliente("Maria", "de Souza", contas2));
-            return clientes;
-        }
-
-        private static int GetFatorial(int numero)
-        {
-            //FATORIAL DE 5 = 5 x 4 x 3 x 2 x 1  = 120
-            //FATORIAL DE 4 = 4 x 3 x 2 x 1      = 24
-            //FATORIAL DE 3 = 3 x 2 x 1          = 6
-            //FATORIAL DE 2 = 2 x 1              = 2 
-            //FATORIAL DE 1                      = 1
-            //FATORIAL DE 0                      = 1 
-
-            int fatorial = 1;
-            //int fator = numero; //inicializacao
-
-            //while (fator >= 1) //condicao
-            //{
-            //    fatorial = fatorial * fator;
-            //    fator = fator - 1; //decremento
-            //}
-
-            for (int fator = numero; fator >= 1; fator--)
-            {
-                fatorial *= fator;
-            }
-
-
-            System.Console.WriteLine($"fatorial de {numero} é {fatorial}");
-
-            return fatorial;
+            Console.ReadKey();
         }
     }
 
-    class Conta
+    class ContaCorrente
     {
-        public Conta(decimal saldo, int periodo, decimal juros)
+        public int Id { get; }
+        public decimal Saldo { get; private set; }
+
+        public ContaCorrente(int id, decimal saldo)
         {
-            Periodo = periodo;
+            if (id <= 0)
+            {
+                throw new ArgumentException(nameof(id));
+            }
+
+            Id = id;
             Saldo = saldo;
-            Juros = juros;
         }
-        public decimal Saldo { get; set; }
-        public decimal Juros { get; set; }
-        public int Periodo { get; set; }
+
+        public void Debitar(decimal valor)
+        {
+            if (Saldo < valor)
+            {
+                //throw new ArgumentException("saldo insuficiente");
+                throw new SaldoInsuficienteException();
+            }
+
+            Saldo -= valor;
+        }
+
+        public void Creditar(decimal valor)
+        {
+            Saldo += valor;
+        }
+
+        public override string ToString()
+        {
+            return $"Conta: {Id}, Saldo: {Saldo:C}";
+        }
     }
 
-    class Cliente
+    interface ITransferenciaBancaria
     {
-        public Cliente(string nome, string sobrenome, IList<Conta> contas)
+        void Efetuar(ContaCorrente contaDebito, ContaCorrente contaCredito
+            , decimal valor);
+    }
+
+    class TransferenciaBancaria : ITransferenciaBancaria
+    {
+        public void Efetuar(ContaCorrente contaDebito, ContaCorrente contaCredito
+            , decimal valor)
         {
-            Nome = nome;
-            Sobrenome = sobrenome;
-            Contas = contas;
+            Logger.LogInfo("Entrando do método Efetuar.");
+            try
+            {
+                if (contaCredito == null)
+                    throw new ArgumentNullException(nameof(contaCredito));
+                if (contaDebito == null)
+                    throw new ArgumentNullException(nameof(contaDebito));
+                if (valor <= 0)
+                    throw new ArgumentOutOfRangeException(nameof(valor));
+
+                contaDebito.Debitar(valor);
+                contaCredito.Creditar(valor);
+                Logger.LogInfo("Transferência realizada com sucesso.");
+            }
+            catch (Exception exc)
+            {
+                Logger.LogErro(exc.ToString());
+                throw;
+            }
+            Logger.LogInfo("Saindo do método Efetuar.");
         }
-        public string Nome { get; set; }
-        public string Sobrenome { get; set; }
-        public IList<Conta> Contas { get; set; }
+    }
+
+    class TransferenciaBancaria_BD : ITransferenciaBancaria
+    {
+        private const string CONNECTION_STRING =
+            @"Data Source=(localdb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DB\ByteBank.mdf;Integrated Security=True";
+        private const decimal TAXA_TRANSFERENCIA = 1.0m;
+        private SqlConnection connection;
+        private SqlTransaction transaction;
+
+        public void Efetuar(ContaCorrente contaCredito, ContaCorrente contaDebito
+            , decimal valor)
+        {
+            Logger.LogInfo("Entrando do método Efetuar.");
+
+            connection = new SqlConnection(CONNECTION_STRING);
+            connection.Open();
+            transaction = connection.BeginTransaction();
+
+            SqlCommand comandoTransferencia = GetTransferenciaCommand
+                (contaCredito.Id, contaDebito.Id, valor);
+            SqlCommand comandoTaxa = GetTaxaTransferenciaCommand
+                (contaCredito.Id, TAXA_TRANSFERENCIA);
+
+            try
+            {
+                comandoTaxa.ExecuteNonQuery();
+                comandoTransferencia.ExecuteNonQuery();
+                transaction.Commit();
+                Logger.LogInfo("Transferência realizada com sucesso.");
+            }
+            catch (SqlException ex)
+            {
+                transaction.Rollback();
+                Logger.LogErro(ex.ToString());
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogErro(ex.ToString());
+                throw;
+            }
+            finally
+            {
+                comandoTransferencia.Dispose();
+                transaction.Dispose();
+                connection.Dispose();
+            }
+            Logger.LogInfo("Saindo do método Efetuar.");
+        }
+
+        private SqlCommand GetTransferenciaCommand(int contaDebitoId, int contaCreditoId, decimal valorTransferencia)
+        {
+            SqlCommand command = new SqlCommand("p_TRANSFERENCIA_BANCARIA_i", connection, transaction);
+            command.Parameters.AddWithValue("@CONTA_ID_DEBITO", contaDebitoId);
+            command.Parameters.AddWithValue("@CONTA_ID_CREDITO", contaCreditoId);
+            command.Parameters.AddWithValue("@VALOR", valorTransferencia);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            return command;
+        }
+
+        private SqlCommand GetTaxaTransferenciaCommand(int contaId, decimal valorTransferencia)
+        {
+            SqlCommand command = new SqlCommand("p_TARIFA_TRANSFERENCIA_i", connection, transaction);
+            command.Parameters.AddWithValue("@CONTA_ID", contaId);
+            command.Parameters.AddWithValue("@VALOR", valorTransferencia);
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            return command;
+        }
+    }
+
+    [Serializable]
+    public class SaldoInsuficienteException : Exception
+    {
+        public SaldoInsuficienteException() { }
+        public SaldoInsuficienteException(string message) : base(message) { }
+        public SaldoInsuficienteException(string message, Exception inner) : base(message, inner) { }
+        protected SaldoInsuficienteException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+
+        public override string Message => "Saldo Insuficiente.";
+    }
+
+    class Logger
+    {
+        public static void LogInfo(string mensagem)
+        {
+            Log(mensagem, "INFO");
+        }
+
+        public static void LogErro(string mensagem)
+        {
+            Log(mensagem, "ERRO");
+        }
+
+        private static void Log(string mensagem, string tipo)
+        {
+            using (var sw = new StreamWriter("logs.txt", append: true))
+            {
+                sw.WriteLine(DateTime.Now.ToLocalTime() + ": " + tipo + " - " + mensagem);
+            }
+        }
     }
 }
