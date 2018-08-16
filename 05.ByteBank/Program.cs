@@ -10,13 +10,6 @@ namespace _06.ByteBank
     {
         static void Main(string[] args)
         {
-            ITransferenciaBancaria transferencia = new TransferenciaBancaria();
-
-            ContaCorrente conta1 = new ContaCorrente(1, 100);
-            ContaCorrente conta2 = new ContaCorrente(4, 50);
-            Console.WriteLine(conta1);
-            Console.WriteLine(conta2);
-
             Console.ReadKey();
         }
     }
@@ -55,7 +48,7 @@ namespace _06.ByteBank
 
         public override string ToString()
         {
-            return $"Conta Nº: {Id}, Saldo: {Saldo:C}";
+            return $"Conta Nº: {Id:0000}, Saldo: {Saldo:C}";
         }
     }
 
