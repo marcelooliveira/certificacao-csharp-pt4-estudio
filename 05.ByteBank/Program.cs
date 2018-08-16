@@ -4,13 +4,13 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 
-namespace _05.ByteBank
+namespace _06.ByteBank
 {
     class Program
     {
         static void Main(string[] args)
         {
-            ITransferenciaBancaria transferencia = new TransferenciaBancaria();
+            ITransferenciaBancaria transferencia = new TransferenciaBancaria_BD();
 
             try
             {
