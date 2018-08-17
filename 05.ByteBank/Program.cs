@@ -30,7 +30,8 @@ namespace _05.ByteBank
                 Console.WriteLine("Aconteceu um problema na transferência.");
                 Logger.LogErro(ex.ToString());
             }
-
+            Console.WriteLine(conta1);
+            Console.WriteLine(conta2);
             Console.ReadKey();
         }
     }
@@ -64,6 +65,11 @@ namespace _05.ByteBank
         public override string ToString()
         {
             return $"Conta Nº: {Id:0000}, Saldo: {Saldo:C}";
+        }
+
+        public void AtualizarSaldo(decimal novoSaldo)
+        {
+            Saldo = novoSaldo;
         }
     }
 
@@ -129,9 +135,21 @@ namespace _05.ByteBank
             comandoTaxa.ExecuteNonQuery();
             comandoTransferencia.ExecuteNonQuery();
             transaction.Commit();
+            AtualizarSaldo(contaDebito);
+            AtualizarSaldo(contaCredito);
             Logger.LogInfo("Transferência realizada com sucesso.");
 
             Logger.LogInfo("Saindo do método Efetuar.");
+        }
+
+        private ContaCorrente AtualizarSaldo(ContaCorrente conta)
+        {
+            SqlCommand comandoSaldo = new SqlCommand("SELECT SALDO_DISPONIVEL FROM CONTA WHERE CONTA_ID = @CONTA_ID", connection);
+            comandoSaldo.Parameters.AddWithValue("@CONTA_ID", conta.Id);
+            object obj = comandoSaldo.ExecuteScalar();
+            decimal novoSaldo = (decimal)(double?)obj;
+            conta.AtualizarSaldo(novoSaldo);
+            return conta;
         }
 
         private SqlCommand GetTransferenciaCommand(int contaDebitoId, int contaCreditoId, decimal valorTransferencia)
