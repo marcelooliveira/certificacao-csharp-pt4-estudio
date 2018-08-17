@@ -145,7 +145,9 @@ namespace _05.ByteBank
             }
             catch (Exception ex)
             {
+                transaction.Rollback();
                 Logger.LogErro(ex.ToString());
+                throw;
             }
             finally
             {
