@@ -126,11 +126,13 @@ namespace _05.ByteBank
             connection.Open();
             transaction = connection.BeginTransaction();
 
+            //OBTÉM OS COMANDOS DO SQL SERVER
             SqlCommand comandoTransferencia = GetTransferenciaCommand
                 (contaCredito.Id, contaDebito.Id, valor);
             SqlCommand comandoTaxa = GetTaxaTransferenciaCommand
                 (contaCredito.Id, TAXA_TRANSFERENCIA);
 
+            //EXECUTA OS COMANDOS NO SERVIDOR DE BANCO DE DADOS
             comandoTaxa.ExecuteNonQuery();
             comandoTransferencia.ExecuteNonQuery();
             transaction.Commit();
