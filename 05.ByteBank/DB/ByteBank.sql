@@ -608,9 +608,9 @@ from CLIENTE c cross join
   where b.CIDADE = 'Woburn' ) e
   cross join
  (select 'CHK' prod_cd,Convert(Datetime, '2000-01-15',120) DATA_ABERTURA,Convert(Datetime, '2005-01-04',120) last_date,
-    1057.75 avail, 1057.75 pend  union all
+    100 avail, 100 pend  union all
   select 'SAV' prod_cd,Convert(Datetime, '2000-01-15',120) DATA_ABERTURA,Convert(Datetime, '2004-12-19',120) last_date,
-    500.00 avail, 500.00 pend   union all
+    100.00 avail, 100 pend   union all
   select 'CD' prod_cd,Convert(Datetime, '2004-06-30',120) DATA_ABERTURA,Convert(Datetime, '2004-06-30' ,120)last_date,
     3000.00 avail, 3000.00 pend   ) a
 where c.UF_ID = '111-11-1111';
@@ -626,7 +626,7 @@ from CLIENTE c cross join
   where b.CIDADE = 'Woburn' ) e
   cross join
  (select 'CHK' prod_cd,Convert(Datetime, '2001-03-12',120) DATA_ABERTURA,Convert(Datetime, '2004-12-27' ,120)last_date,
-    2258.02 avail, 2258.02 pend   union all
+    50 avail, 50 pend   union all
   select 'SAV' prod_cd,Convert(Datetime, '2001-03-12',120) DATA_ABERTURA,Convert(Datetime, '2004-12-11' ,120)last_date,
     200.00 avail, 200.00 pend   ) a
 where c.UF_ID = '222-22-2222';
@@ -658,9 +658,9 @@ from CLIENTE c cross join
   where b.CIDADE = 'Waltham' ) e
   cross join
  (select 'CHK' prod_cd,Convert(Datetime, '2003-09-12' ,120)DATA_ABERTURA,Convert(Datetime, '2005-01-03' ,120)last_date,
-    534.12 avail, 534.12 pend   union all
+    50 avail, 50 pend   union all
   select 'SAV' prod_cd,Convert(Datetime, '2000-01-15' ,120)DATA_ABERTURA,Convert(Datetime, '2004-10-24',120) last_date,
-    767.77 avail, 767.77 pend   union all
+    50 avail, 50 pend   union all
   select 'MM' prod_cd,Convert(Datetime, '2004-09-30',120) DATA_ABERTURA,Convert(Datetime, '2004-11-11' ,120)last_date,
     5487.09 avail, 5487.09 pend ) a
 where c.UF_ID = '444-44-4444';
