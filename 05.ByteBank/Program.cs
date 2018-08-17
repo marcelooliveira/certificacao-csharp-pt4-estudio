@@ -133,19 +133,28 @@ namespace _05.ByteBank
             SqlCommand comandoTaxa = GetTaxaTransferenciaCommand
                 (contaCredito.Id, TAXA_TRANSFERENCIA);
 
-            //EXECUTA OS COMANDOS NO SERVIDOR DE BANCO DE DADOS
-            comandoTaxa.ExecuteNonQuery();
-            comandoTransferencia.ExecuteNonQuery();
-            transaction.Commit(); //A TRANSFERÊNCIA ACONTECE NESTA LINHA
-            AtualizarSaldo(contaDebito);
-            AtualizarSaldo(contaCredito);
-            Logger.LogInfo("Transferência realizada com sucesso.");
-
-            //LIBERA OS RECURSOS
-            comandoTransferencia.Dispose();
-            comandoTaxa.Dispose();
-            transaction.Dispose();
-            connection.Dispose();
+            try
+            {
+                //EXECUTA OS COMANDOS NO SERVIDOR DE BANCO DE DADOS
+                comandoTaxa.ExecuteNonQuery();
+                comandoTransferencia.ExecuteNonQuery();
+                transaction.Commit(); //A TRANSFERÊNCIA ACONTECE NESTA LINHA
+                AtualizarSaldo(contaDebito);
+                AtualizarSaldo(contaCredito);
+                Logger.LogInfo("Transferência realizada com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                Logger.LogErro(ex.ToString());
+            }
+            finally
+            {
+                //LIBERA OS RECURSOS
+                comandoTransferencia.Dispose();
+                comandoTaxa.Dispose();
+                transaction.Dispose();
+                connection.Dispose();
+            }
             
             Logger.LogInfo("Saindo do método Efetuar.");
         }
