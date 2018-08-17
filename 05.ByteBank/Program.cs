@@ -15,7 +15,7 @@ namespace _05.ByteBank
             Console.WriteLine(conta1);
             Console.WriteLine(conta2);
 
-            ITransferenciaBancaria transferencia = new TransferenciaBancaria();
+            ITransferenciaBancaria transferencia = new TransferenciaBancaria_BD();
             transferencia.Efetuar(conta1, conta2, 30);
 
             Console.WriteLine(conta1);
