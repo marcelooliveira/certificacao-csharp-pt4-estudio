@@ -30,8 +30,7 @@ namespace _05.ByteBank
                 Console.WriteLine("Aconteceu um problema na transferência.");
                 Logger.LogErro(ex.ToString());
             }
-            Console.WriteLine(conta1);
-            Console.WriteLine(conta2);
+
             Console.ReadKey();
         }
     }
