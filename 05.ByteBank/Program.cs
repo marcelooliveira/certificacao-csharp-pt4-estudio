@@ -136,7 +136,7 @@ namespace _05.ByteBank
             //EXECUTA OS COMANDOS NO SERVIDOR DE BANCO DE DADOS
             comandoTaxa.ExecuteNonQuery();
             comandoTransferencia.ExecuteNonQuery();
-            transaction.Commit();
+            transaction.Commit(); //A TRANSFERÊNCIA ACONTECE NESTA LINHA
             AtualizarSaldo(contaDebito);
             AtualizarSaldo(contaCredito);
             Logger.LogInfo("Transferência realizada com sucesso.");
