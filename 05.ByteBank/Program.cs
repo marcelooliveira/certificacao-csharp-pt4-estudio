@@ -53,12 +53,6 @@ namespace _05.ByteBank
 
         public void Debitar(decimal valor)
         {
-            if (Saldo < valor)
-            {
-                //throw new ArgumentException("saldo insuficiente");
-                throw new SaldoInsuficienteException();
-            }
-
             Saldo -= valor;
         }
 
@@ -155,20 +149,7 @@ namespace _05.ByteBank
             return command;
         }
     }
-
-    [Serializable]
-    public class SaldoInsuficienteException : Exception
-    {
-        public SaldoInsuficienteException() { }
-        public SaldoInsuficienteException(string message) : base(message) { }
-        public SaldoInsuficienteException(string message, Exception inner) : base(message, inner) { }
-        protected SaldoInsuficienteException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
-
-        public override string Message => "Saldo Insuficiente.";
-    }
-
+    
     class Logger
     {
         public static void LogInfo(string mensagem)
