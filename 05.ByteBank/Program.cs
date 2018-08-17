@@ -121,7 +121,8 @@ namespace _05.ByteBank
             , decimal valor)
         {
             Logger.LogInfo("Entrando do método Efetuar.");
-
+            
+            //CRIA CONEXÃO COM O BANCO DE DADOS E INICIA UMA TRANSAÇÃO
             connection = new SqlConnection(CONNECTION_STRING);
             connection.Open();
             transaction = connection.BeginTransaction();
