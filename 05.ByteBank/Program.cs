@@ -23,7 +23,7 @@ namespace _05.ByteBank
 
             try
             {
-                transferencia.Efetuar(conta1, conta2, -75);
+                transferencia.Efetuar(conta1, conta2, 250);
             }
             catch (Exception ex)
             {
@@ -89,6 +89,10 @@ namespace _05.ByteBank
             if (valor <= 0)
             {
                 throw new ArgumentOutOfRangeException("valor");
+            }
+            if (valor > contaDebito.Saldo)
+            {
+                throw new SaldoInsuficienteException();
             }
 
             Logger.LogInfo("Entrando do método Efetuar.");
@@ -170,5 +174,18 @@ namespace _05.ByteBank
                 sw.WriteLine(DateTime.Now.ToLocalTime() + ": " + tipo + " - " + mensagem);
             }
         }
+    }
+
+
+    [Serializable]
+    public class SaldoInsuficienteException : Exception
+    {
+        public SaldoInsuficienteException() { }
+        public SaldoInsuficienteException(string message) : base(message) { }
+        public SaldoInsuficienteException(string message, Exception inner) : base(message, inner) { }
+        protected SaldoInsuficienteException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+        public override string Message => "Saldo insuficiente.";
     }
 }
