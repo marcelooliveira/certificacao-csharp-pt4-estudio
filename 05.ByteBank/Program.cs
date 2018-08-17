@@ -140,6 +140,12 @@ namespace _05.ByteBank
             AtualizarSaldo(contaCredito);
             Logger.LogInfo("Transferência realizada com sucesso.");
 
+            //LIBERA OS RECURSOS
+            comandoTransferencia.Dispose();
+            comandoTaxa.Dispose();
+            transaction.Dispose();
+            connection.Dispose();
+            
             Logger.LogInfo("Saindo do método Efetuar.");
         }
 
